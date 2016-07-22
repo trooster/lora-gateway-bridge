@@ -49,13 +49,20 @@ type TXInfo struct {
 
 // GatewayStatsPacket contains the information of a gateway.
 type GatewayStatsPacket struct {
-	MAC                 lorawan.EUI64 `json:"mac"`
-	Time                time.Time     `json:"time"`
-	Latitude            float64       `json:"latitude"`
-	Longitude           float64       `json:"longitude"`
-	Altitude            float64       `json:"altitude"`
-	RXPacketsReceived   int           `json:"rxPacketsReceived"`
-	RXPacketsReceivedOK int           `json:"rxPacketsReceivedOK"`
+	MAC                      lorawan.EUI64 `json:"mac"`
+	Time                     time.Time     `json:"time"`
+	Latitude                 float64       `json:"latitude"`
+	Longitude                float64       `json:"longitude"`
+	Altitude                 float64       `json:"altitude"`
+	RXPacketsReceived        int           `json:"rxPacketsReceived"`
+	RXPacketsReceivedOK      int           `json:"rxPacketsReceivedOK"`
+	RxPacketsForwarded       int           `json:"RxPacketsForwarded"`
+	UpAckPercentage          float64       `json:"UpAckPercentage"`
+	DownlinkDiagramsReceived int           `json:"DownlinkDiagramsReceived"`
+	TxPacketsEmitted         int           `json:"TxPacketsEmitted"`
+	Platform                 string        `json:"Platform"`
+	ContactEmail             string        `json:"ContactEmail"`
+	Description              string        `json:"Description"`
 }
 
 // RXPayload contains the received (decrypted) payload from the node

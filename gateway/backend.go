@@ -350,13 +350,20 @@ func (b *Backend) handleRXPacket(addr *net.UDPAddr, mac lorawan.EUI64, rxpk RXPK
 // models.GatewayStatsPacket.
 func newGatewayStatsPacket(mac lorawan.EUI64, stat Stat) models.GatewayStatsPacket {
 	return models.GatewayStatsPacket{
-		Time:                time.Time(stat.Time),
-		MAC:                 mac,
-		Latitude:            stat.Lati,
-		Longitude:           stat.Long,
-		Altitude:            float64(stat.Alti),
-		RXPacketsReceived:   int(stat.RXNb),
-		RXPacketsReceivedOK: int(stat.RXOK),
+		Time:                     time.Time(stat.Time),
+		MAC:                      mac,
+		Latitude:                 stat.Lati,
+		Longitude:                stat.Long,
+		Altitude:                 float64(stat.Alti),
+		RXPacketsReceived:        int(stat.RXNb),
+		RXPacketsReceivedOK:      int(stat.RXOK),
+		RxPacketsForwarded:       int(stat.RXFW),
+		UpAckPercentage:          float64(stat.ACKR),
+		DownlinkDiagramsReceived: int(stat.DWNb),
+		TxPacketsEmitted:         int(stat.TXNb),
+		Platform:                 stat.Pfrm,
+		ContactEmail:             stat.Mail,
+		Description:              stat.Desc,
 	}
 }
 

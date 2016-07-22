@@ -63,6 +63,10 @@ func TestBackend(t *testing.T) {
 							RXFW: 3,
 							ACKR: 33.3,
 							DWNb: 4,
+							TXNb: 4,
+							Pfrm: "The Things Gateway",
+							Mail: "admin@gateway.net",
+							Desc: "My Gateway",
 						},
 					},
 				}
@@ -240,6 +244,10 @@ func TestNewGatewayStatPacket(t *testing.T) {
 			RXFW: 3,
 			ACKR: 33.3,
 			DWNb: 4,
+			TXNb: 4,
+			Pfrm: "The Things Gateway",
+			Mail: "admin@gateway.net",
+			Desc: "My Gateway",
 		}
 		mac := [8]byte{1, 2, 3, 4, 5, 6, 7, 8}
 
@@ -247,13 +255,20 @@ func TestNewGatewayStatPacket(t *testing.T) {
 			gw := newGatewayStatsPacket(mac, stat)
 			Convey("Then all fields are set correctly", func() {
 				So(gw, ShouldResemble, models.GatewayStatsPacket{
-					Time:                now,
-					MAC:                 mac,
-					Latitude:            1.234,
-					Longitude:           2.123,
-					Altitude:            234,
-					RXPacketsReceived:   1,
-					RXPacketsReceivedOK: 2,
+					Time:                     now,
+					MAC:                      mac,
+					Latitude:                 1.234,
+					Longitude:                2.123,
+					Altitude:                 234,
+					RXPacketsReceived:        1,
+					RXPacketsReceivedOK:      2,
+					RxPacketsForwarded:       3,
+					UpAckPercentage:          33.3,
+					DownlinkDiagramsReceived: 4,
+					TxPacketsEmitted:         4,
+					Platform:                 "The Things Gateway",
+					ContactEmail:             "admin@gateway.net",
+					Description:              "My Gateway",
 				})
 			})
 		})
